@@ -1,6 +1,20 @@
 # Freiburg Mobility Aids · YOLOv8
 
+[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MarcZem/Gut-ankommen/blob/main/train_in_colab.ipynb)
+
 A modular pipeline for converting the University of Freiburg's Mobility Aids RGB dataset, training YOLOv8 Nano, and trying the trained detector on a local webcam. A small static browser page provides a camera preview for the hosted prototype.
+
+## Train in Google Colab
+
+Open the notebook with the badge above, select **Runtime → Change runtime type → T4 GPU** when available, then run all cells. It clones this repository, installs the Python dependencies, downloads and prepares the Freiburg RGB dataset in the Colab VM, trains YOLOv8 Nano for 30 epochs, and downloads `best.pt` to your computer. Free T4 availability depends on Colab; the notebook checks for an active CUDA GPU and available disk space before starting.
+
+After the browser download completes, put the model at `./weights/best.pt` in your local checkout and start the camera demo:
+
+```bash
+python webcam_demo.py --weights ./weights/best.pt
+```
+
+The notebook also includes an optional Google Drive copy cell. Colab VM files are temporary, so download the model or save it to Drive before ending the runtime.
 
 ## Dataset preparation
 
@@ -22,7 +36,7 @@ python train_yolo.py
 python webcam_demo.py
 ```
 
-Training defaults to 30 epochs and 640px images. It selects CUDA, Apple MPS, or CPU automatically and copies the best checkpoint to `weights/best.pt`. The camera demo draws red rectangles with class names and confidence scores around detections; press `q` or Escape to quit.
+Training defaults to 30 epochs and 640px images. It selects CUDA, Apple MPS, or CPU automatically and copies the best checkpoint to `weights/best.pt`. The webcam demo defaults to `./weights/best.pt`, draws red rectangles with class names and confidence scores around detections, and exits when you press `q` or Escape.
 
 Classes, in source order:
 

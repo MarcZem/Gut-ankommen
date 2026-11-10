@@ -37,7 +37,7 @@ def draw_detections(frame: np.ndarray, result) -> np.ndarray:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--weights", type=Path, default=Path("weights/best.pt"))
+    parser.add_argument("--weights", type=Path, default=Path("./weights/best.pt"))
     parser.add_argument("--camera", type=int, default=0)
     parser.add_argument("--conf", type=float, default=.35)
     parser.add_argument("--imgsz", type=int, default=640)
