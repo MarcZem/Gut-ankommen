@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+data/
+runs/
+weights/
+*.pt
+*.onnx
+.vercel/
+.DS_Store

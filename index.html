@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101614" />
+  <title>Mobility Aid Perception</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><a class="brand" href="/" aria-label="Mobility Aid Perception home"><span class="brand-mark">M</span><span>FIELD NOTES <i>/</i> PERCEPTION</span></a><span class="version">FREIBURG DATASET · YOLOV8</span></header>
+    <section class="intro">
+      <div class="eyebrow"><span class="pulse"></span> COMPUTER VISION PROTOTYPE</div>
+      <h1>Mobility aid<br /><em>perception.</em></h1>
+      <p class="lede">A real-time camera preview for a five-class detector trained on the University of Freiburg Mobility Aids dataset.</p>
+    </section>
+    <section class="workspace">
+      <div class="view-card">
+        <div class="view-heading"><div><span class="label">LIVE INPUT</span><span class="view-title">Laptop camera</span></div><span id="live-status" class="status"><b></b> CAMERA OFF</span></div>
+        <div class="stage" id="stage"><video id="camera" autoplay playsinline muted></video><div id="empty" class="empty"><div class="camera-icon">◉</div><strong>Your camera view will appear here</strong><span>Allow camera access when your browser asks</span></div><div id="frame-label" class="frame-label">LIVE</div></div>
+        <div class="controls"><button id="start" class="button primary"><span>▶</span> Start camera</button><button id="stop" class="button secondary" disabled>Stop</button><span id="hint" class="hint">Camera stays on this device</span></div>
+      </div>
+      <aside class="side-card">
+        <div class="side-title"><span class="label">DETECTOR</span><span class="chip">PROTOTYPE</span></div>
+        <div class="model-box"><div class="model-icon">◎</div><div><strong>YOLOv8 Nano</strong><small id="model-state">Model not loaded in browser</small></div></div>
+        <p class="note">The Python pipeline runs live inference locally with <code>webcam_demo.py</code>. This deployed page previews your camera; model weights stay local and are not uploaded.</p>
+        <div class="divider"></div><span class="label class-label">TARGET CLASSES <small>05</small></span>
+        <ol class="classes"><li><span>01</span>Pedestrian</li><li><span>02</span>Person in wheelchair</li><li><span>03</span>Pushing wheelchair</li><li><span>04</span>Using crutches</li><li><span>05</span>Using a walking frame</li></ol>
+        <div class="privacy"><span>⌑</span><p><strong>Private by design</strong><br />Camera frames are processed only in your browser.</p></div>
+      </aside>
+    </section>
+    <footer><span>UNIVERSITY OF FREIBURG · MOBILITY AIDS</span><a href="https://github.com/MarcZem/Gut-ankommen">SOURCE REPOSITORY ↗</a></footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
