@@ -13,7 +13,7 @@ pip install -r requirements.txt
 python dataset_prep.py
 ```
 
-The archives are downloaded into `data/freiburg_raw/`, extracted there, and paired by image/annotation filename stem. The converter supports the published YAML structure (`annotation.object` with class and bounding box fields such as `bndbox.xmin/ymin/xmax/ymax`). It writes normalized YOLO labels and `data/freiburg_yolo/data.yaml`. Override the official URLs with `--images-url` / `--annotations-url` or the `FREIBURG_IMAGES_URL` / `FREIBURG_ANNOTATIONS_URL` environment variables when needed.
+The archives are downloaded into `data/freiburg_raw/`, extracted there, and paired by image/annotation filename stem. The converter supports Freiburg's YAML structure (`annotation.object` with `name`, `bndbox`, and `annotation.size`). It writes normalized YOLO labels and `data/freiburg_yolo/data.yaml`. The 12.4 GB RGB archive needs roughly three times its compressed size free for archive, extracted images, and prepared copies; a disk-space preflight stops before a download when space is insufficient. Override the official URLs with `--images-url` / `--annotations-url` or the `FREIBURG_IMAGES_URL` / `FREIBURG_ANNOTATIONS_URL` environment variables when needed.
 
 ## Train and run
 

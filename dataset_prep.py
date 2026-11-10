@@ -24,7 +24,7 @@ CLASSES = ["pedestrian", "person in wheelchair", "pedestrian pushing a person in
            "person using crutches", "person using a walking frame"]
 ALIASES = {
     "pedestrian": 0, "person": 0, "person in wheelchair": 1, "wheelchair": 1,
-    "pedestrian pushing a person in a wheelchair": 2, "pushing wheelchair": 2,
+    "pedestrian pushing a person in a wheelchair": 2, "pushing wheelchair": 2, "push wheelchair": 2,
     "person using crutches": 3, "crutches": 3, "person using a walking frame": 4,
     "walking frame": 4, "walker": 4,
 }
@@ -42,6 +42,17 @@ def download(url: str, dest: Path) -> None:
             while chunk := response.read(1024 * 1024):
                 out.write(chunk)
                 bar.update(len(chunk))
+
+
+def remote_size(url: str) -> int | None:
+    request = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "mobility-aids-yolo/1.0"})
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            value = response.headers.get("Content-Length")
+            return int(value) if value else None
+    except Exception as exc:
+        print(f"Warning: could not estimate archive size ({exc}); skipping disk-space preflight.")
+        return None
 
 
 def safe_extract(archive: Path, destination: Path) -> None:
@@ -129,6 +140,18 @@ def main() -> None:
     args.raw_dir.mkdir(parents=True, exist_ok=True)
     archives = [(args.images_url, args.raw_dir / "rgb_images_archive"),
                 (args.annotations_url, args.raw_dir / "rgb_annotations_archive")]
+    images_archive = archives[0][1].with_suffix(Path(urlparse(args.images_url).path).suffix or ".zip")
+    images_extracted = archives[0][1].with_name(archives[0][1].name + "_extracted")
+    if not images_archive.exists() and not images_extracted.exists():
+        archive_bytes = remote_size(args.images_url)
+        if archive_bytes:
+            # The archive, extracted RGB files, and prepared copy can coexist.
+            required = archive_bytes * 3
+            available = shutil.disk_usage(args.raw_dir).free
+            if available < required:
+                required_gb = required / (1024 ** 3)
+                available_gb = available / (1024 ** 3)
+                raise SystemExit(f"Insufficient free disk space for the RGB archive and prepared dataset: about {available_gb:.1f} GiB available, plan for at least {required_gb:.1f} GiB. Choose a drive with more free space.")
     for url, stem in archives:
         suffix = Path(urlparse(url).path).suffix or ".zip"
         archive = stem.with_suffix(suffix)
