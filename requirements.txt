@@ -4,3 +4,4 @@ PyYAML>=6.0
 tqdm>=4.66
 ultralytics>=8.2,<9
 torch>=2.1
+qrcode[pil]>=7.4

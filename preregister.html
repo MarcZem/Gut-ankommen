@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101614" />
+  <meta name="description" content="Melde dich für den Early Access von Gut ankommen an." />
+  <title>Voranmelden · Gut ankommen</title>
+  <link rel="stylesheet" href="/preregister.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Zur Startseite Gut ankommen"><span class="brand-mark">G</span><span>GUT ANKOMMEN</span></a>
+      <a class="back-link" href="/">Zurück zur Startseite <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <section class="signup" aria-labelledby="signup-heading">
+      <div class="eyebrow"><span class="pulse"></span> SICHER UNTERWEGS · GUT ANGEKOMMEN</div>
+      <div class="signup-grid">
+        <div class="intro-copy">
+          <p class="overline">DEIN PLATZ IST SCHON UNTERWEGS</p>
+          <h1 id="signup-heading">Jetzt voranmelden &amp; <em>Early-Access sichern</em></h1>
+          <p class="lede">Wir entwickeln Gut ankommen, damit sich Wege mit Bus und Bahn sicherer und entspannter anfühlen. Trag dich ein und erfahre als Erste:r, wenn der Early Access startet.</p>
+          <div class="promise"><span aria-hidden="true">✳</span><p><strong>Kein Spam, versprochen.</strong><br />Wir melden uns nur mit Neuigkeiten zum Early Access.</p></div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-card-head"><span class="label">EARLY-ACCESS-WARTELISTE</span><span class="step">01 <i>/</i> 01</span></div>
+          <form id="preregister-form" novalidate>
+            <label for="email">Deine E-Mail-Adresse</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="name@beispiel.de" required aria-describedby="email-help form-status" />
+            <small id="email-help" class="field-help">Damit wir dir deinen Early-Access-Platz bestätigen können.</small>
+            <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button id="submit-button" type="submit"><span class="button-copy">Voranmelden</span><span class="button-arrow" aria-hidden="true">→</span></button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="privacy-note">Mit deiner Anmeldung wird deine E-Mail-Adresse über Web3Forms verarbeitet und ausschließlich für Early-Access-Informationen genutzt.</p>
+        </div>
+      </div>
+      <div class="bottom-note"><span>GUT ANGEKOMMEN</span><span>MEHR SICHERHEIT AUF DEINEM WEG</span></div>
+    </section>
+  </main>
+  <script src="/preregister.js"></script>
+</body>
+</html>

@@ -4,6 +4,12 @@
 
 A modular pipeline for converting the University of Freiburg's Mobility Aids RGB dataset, training YOLOv8 Nano, and trying the trained detector on a local webcam. A small static browser page provides a camera preview for the hosted prototype.
 
+## Pre-registration
+
+The mobile-friendly sign-up page is available at [`/preregister`](https://gut-ankommen.vercel.app/preregister). It submits email addresses directly to Web3Forms and does not use an app database. Configure `NEXT_PUBLIC_WEB3FORMS_KEY` in the Vercel project environment (or copy `.env.example` to `.env.local` for a local build). The build step injects this public Web3Forms key into the browser bundle, as required by the service. Never commit a populated `.env.local` file.
+
+The pitch-deck QR image is [`public/qr-code.png`](public/qr-code.png). Regenerate it with `python scripts/generate_qr.py`; pass `--url` to encode a different production URL. To run a local static build, use `node scripts/build.mjs`; the generated site is written to `dist/`.
+
 ## Train in Google Colab
 
 Open the notebook with the badge above, select **Runtime → Change runtime type → T4 GPU** when available, then run all cells. It clones this repository, installs the Python dependencies, downloads and prepares the Freiburg RGB dataset in the Colab VM, trains YOLOv8 Nano for 30 epochs, and downloads `best.pt` to your computer. Free T4 availability depends on Colab; the notebook checks for an active CUDA GPU and available disk space before starting.
